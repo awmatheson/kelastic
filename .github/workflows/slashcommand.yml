@@ -17,6 +17,4 @@ jobs:
           issue-type: pull-request
           named-args: true
       - name: Dump the client payload context
-        env:
-          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
-        run: echo "$PAYLOAD_CONTEXT"
+        run: echo ${{ github.event }}
