@@ -18,5 +18,5 @@ jobs:
           named-args: true
       - name: Dump the client payload context
         env:
-          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
+          PAYLOAD_CONTEXT: ${{ toJson(github.event) }}
         run: echo "$PAYLOAD_CONTEXT"
