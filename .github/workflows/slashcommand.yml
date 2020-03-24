@@ -10,7 +10,12 @@ jobs:
         uses: peter-evans/slash-command-dispatch@v1
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          commands: deploy, integration-test, build-docs
+          reaction-token: ${{ secrets.GITHUB_TOKEN }}
+          commands: deploy
+          reaction-type: hooray
+          permission: write
+          issue-type: pull-request
+          named-args: true
       - name: Dump the client payload context
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event) }}
