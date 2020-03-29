@@ -7,12 +7,9 @@ jobs:
     - shell: bash
       id: release_description
       run: |
-          description="## GitHubActionExperiment_1585252332_b5f3cd66/n
-          | Kernel type | Penalty | Accuracy | precision | recall | f1-score | confusion_matrix | confusion_matrix_unnormalized | confusion_matrix_normalized | Model Name |/n
-          | -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |/n
-          | linear | 1.0 | 0.933 | 0.933 | 0.933 | 0.933 | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix_unnormalized_1585253019.png | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix_normalized_1585253019.png | model.pkl |"
-          echo $description
-          echo "::set-output name=description1::$description"
+          description=$'## GitHubActionExperiment_1585252332_b5f3cd66//n//n| Kernel type | Penalty | Accuracy | precision | recall | f1-score | confusion_matrix | confusion_matrix_unnormalized | confusion_matrix_normalized | Model Name |//n| -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |//n| linear | 1.0 | 0.933 | 0.933 | 0.933 | 0.933 | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix_unnormalized_1585253019.png | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix_normalized_1585253019.png | model.pkl |'
+          echo -e $description
+          echo -e "::set-output name=description1::$description"
     - shell: bash
       run: |
         echo "${{ steps.release_description.outputs.description1 }}"
