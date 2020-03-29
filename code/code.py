@@ -3,16 +3,16 @@
 def convert_to_markdown(metrics_dict):
     markdown = ""
     for k in metrics_dict.keys():
-        markdown += f"## {k} \\n\\n"
+        markdown += f"## {k} %0A%0A"
 
         # format headers
         headers = "|"
         for nam in metrics_dict[k].keys():
-            headers += f" {nam} |"
-        markdown += headers + "\\n"
+            headers += f" {nam} "
+        markdown += headers + "%0A"
 
         # add lines under headers
-        markdown += "|" + " -- |" * len(metrics_dict[k]) + "\\n"
+        markdown += "|" + " -- |" * len(metrics_dict[k]) + "%0A"
 
         # add values
         metrics = "|"
@@ -22,7 +22,7 @@ def convert_to_markdown(metrics_dict):
                 metrics += f" {val:.3} |"
             except ValueError:
                 metrics += f" {val} |"
-        markdown += metrics + "\\n"
+        markdown += metrics + "%0A"
 
     return markdown
 
