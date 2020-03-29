@@ -1,17 +1,27 @@
-name: set output
-on: push
+name: Test Output
+on: pull_request
 jobs:
-  job1:
+  lint:
+    name: test output
     runs-on: ubuntu-latest
     steps:
-    - shell: bash
-      id: release_description
-      run: |
-          description=$'## GitHubActionExperiment_1585252332_b5f3cd66/n/n| Kernel type | Penalty | Accuracy | precision | recall | f1-score | confusion_matrix | confusion_matrix_unnormalized | confusion_matrix_normalized | Model Name |/n| -- | -- | -- | -- | -- | -- | -- | -- | -- | -- |/n| linear | 1.0 | 0.933 | 0.933 | 0.933 | 0.933 | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix_unnormalized_1585253019.png | aml://artifactId/ExperimentRun/dcid.GitHubActionExperiment_1585252332_b5f3cd66/confusion_matrix_normalized_1585253019.png | model.pkl |'
-          echo $description
-          description="${description//$'\n'/'%0A'}"
-          echo $description
-          echo "::set-output name=description1::$description"
-    - shell: bash
-      run: |
-        echo "${{ steps.release_description.outputs.description1 }}"
+      - name: Set up Python 3.7
+        id: python_setup
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
+
+      - name: Check Out Repository
+        id: checkout_repository
+        uses: actions/checkout@v1
+
+      - name: create output
+        id: create_output
+        run: ./code/entrypoint.sh
+
+      - name: comment PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "${{ steps.create_output.outputs.run_metrics }}"
