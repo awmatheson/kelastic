@@ -19,7 +19,7 @@ jobs:
         id: create_output
         run: |
           ls -la code
-          python /code/code.py
+          python code/code.py
 
       - name: comment PR
         uses: unsplash/comment-on-pr@master
