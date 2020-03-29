@@ -13,11 +13,13 @@ jobs:
 
       - name: Check Out Repository
         id: checkout_repository
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: create output
         id: create_output
-        run: ./code/entrypoint.sh
+        run: 
+          ls -la code
+          ./code/code.py
 
       - name: comment PR
         uses: unsplash/comment-on-pr@master
