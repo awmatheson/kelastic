@@ -17,7 +17,7 @@ jobs:
 
       - name: create output
         id: create_output
-        run: 
+        run: |
           ls -la code
           ./code/code.py
 
