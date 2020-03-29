@@ -8,7 +8,7 @@ def convert_to_markdown(metrics_dict):
         # format headers
         headers = "|"
         for nam in metrics_dict[k].keys():
-            headers += f" {nam} "
+            headers += f" {nam} |"
         markdown += headers + "%0A"
 
         # add lines under headers
