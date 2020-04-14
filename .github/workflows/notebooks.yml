@@ -1,0 +1,21 @@
+name: notebook-diff
+on:
+  pull_request:
+    paths:
+      - '*.ipynb'
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+
+    - name: notebook-diff
+      run: | 
+        echo ${{ GITHUB_REF }}
+
+    - name: Diff
+      uses: machine-learning-apps/notebook-diff@master
+      env:
+        REF: ${{ GITHUB_REF }}
+        PUBLISH_BRANCH: gh-pages
