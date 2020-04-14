@@ -16,6 +16,3 @@ jobs:
 
     - name: Diff
       uses: machine-learning-apps/notebook-diff@master
-      env:
-        REF: ${{ GITHUB_REF }}
-        PUBLISH_BRANCH: gh-pages
