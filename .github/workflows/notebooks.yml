@@ -12,7 +12,7 @@ jobs:
 
     - name: notebook-diff
       run: | 
-        echo ${{ GITHUB_REF }}
+        echo $GITHUB_REF
 
     - name: Diff
       uses: machine-learning-apps/notebook-diff@master
